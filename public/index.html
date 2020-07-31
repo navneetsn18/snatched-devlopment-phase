@@ -9,7 +9,7 @@
 
 <body>
     <form action="/sendnews" method="post" id="form">
-        <input type="email" name="email" id="email" required>
+        <input type="email" name="email" id="email" onkeypress="inputData()" autocomplete="off" required>
         <input type="submit" value="Submit" id="submit" onclick="fun()">
     </form>
     <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>

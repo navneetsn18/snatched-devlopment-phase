@@ -2,10 +2,21 @@ var submit = document.getElementById("submit");
 var form = document.getElementById("form");
 const regex = /\S+@\S+\.\S+/;
 
-function fun(e) {
+function fun() {
     var email = document.getElementById("email").value;
     console.log(email)
     if (email.match(regex) != null) {
         console.log("Subscribed");
+    }
+}
+
+function inputData() {
+    var email = document.getElementById("email").value;
+    console.log(email);
+    console.log(email);
+    if (email.match(regex) != null) {
+        submit.disabled = false;
+    } else {
+        submit.disabled = true;
     }
 }
