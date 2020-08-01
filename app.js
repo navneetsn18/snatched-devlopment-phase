@@ -7,7 +7,6 @@ const csrf = require("csurf");
 var app = express();
 const csrfMiddleware = csrf({ cookie: true });
 
-
 app.use(bodyParser.json());
 app.engine("html", require("ejs").renderFile);
 app.use(bodyParser.urlencoded({
@@ -21,7 +20,6 @@ app.all("*", (req, res, next) => {
     res.cookie("XSRF-TOKEN", req.csrfToken());
     next();
 });
-
 
 var serviceAccount = require("./snatched-test-1-firebase-adminsdk-37s62-649b988237.json");
 
@@ -116,7 +114,6 @@ app.use(function(req, res, next) {
     res.status(404);
     res.render("404.html");
 })
-
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
