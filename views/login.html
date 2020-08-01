@@ -19,6 +19,8 @@
                 <label>Password</label>
                 <input type="password" name="password" />
                 <button>Log in</button>
+                <br>
+                <button onclick="googlesignin()">Google</button>
             </form>
         </section>
 
@@ -75,6 +77,36 @@
                         return false;
                     });
             });
+
+            function googlesignin() {
+                event.preventDefault();
+                baseProvider = new firebase.auth.GoogleAuthProvider();
+                firebase.auth().signInWithPopup(baseProvider)
+                    .then(({
+                        user
+                    }) => {
+                        return user.getIdToken().then((idToken) => {
+                            return fetch("/sessionLogin", {
+                                method: "POST",
+                                headers: {
+                                    Accept: "application/json",
+                                    "Content-Type": "application/json",
+                                    "CSRF-Token": Cookies.get("XSRF-TOKEN"),
+                                },
+                                body: JSON.stringify({
+                                    idToken
+                                }),
+                            });
+                        });
+                    })
+                    .then(() => {
+                        return firebase.auth().signOut();
+                    })
+                    .then(() => {
+                        window.location.assign("/profile");
+                    });
+                return false;
+            }
         </script>
     </main>
 </body>
