@@ -108,11 +108,17 @@ app.get("/sessionLogout", (req, res) => {
     res.redirect("/login");
 });
 
-
 app.get('/', function(req, res) {
-    res.set({
-        'Access-control-Allow-Origin': '*'
-    });
-    return res.redirect('./views/index.html');
-}).listen(process.env.PORT || 3000);
-console.log("server listening at port 3000");
+    res.render("index.html");
+});
+
+app.use(function(req, res, next) {
+    res.status(404);
+    res.render("404.html");
+})
+
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log("server listening at port 3000");
+});
