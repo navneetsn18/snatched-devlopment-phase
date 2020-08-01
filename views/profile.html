@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription</title>
+</head>
+
+<body>
+    <form action="/sendnews" method="post" id="form">
+        <input type="hidden" name="_csrf" value=<%=csrfTokenFromServer %> />
+        <input type="email" name="email" id="email" onkeypress="inputData()" autocomplete="off" required>
+        <input type="submit" value="Submit" id="submit" onclick="fun()">
+    </form>
+    <a href="/sessionLogout" style="float: right;">Log out</a>
+
+    <script>
+        var submit = document.getElementById("submit");
+        var form = document.getElementById("form");
+        const regex = /\S+@\S+\.\S+/;
+
+        function fun() {
+            var email = document.getElementById("email").value;
+            console.log(email)
+            if (email.match(regex) != null) {
+                console.log("Subscribed");
+            }
+        }
+
+        function inputData() {
+            var email = document.getElementById("email").value;
+            if (email.match(regex) != null) {
+                submit.disabled = false;
+            } else {
+                submit.disabled = true;
+            }
+        }
+    </script>
+</body>
+
+</html>
