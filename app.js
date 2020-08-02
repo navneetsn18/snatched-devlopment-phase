@@ -3,7 +3,6 @@ var bodyParser = require("body-parser");
 var admin = require("firebase-admin");
 const cookieParser = require("cookie-parser");
 const csrf = require("csurf");
-var store = require("store");
 
 var app = express();
 const csrfMiddleware = csrf({ cookie: true });
