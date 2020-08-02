@@ -5,9 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subscription</title>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js" defer></script>
 </head>
 
 <body>
+    <h1 id="userEmail"></h1>
     <form action="/sendnews" method="post" id="form">
         <input type="hidden" name="_csrf" value=<%=csrfTokenFromServer %> >
         <input type="email" name="email" id="email" onkeypress="inputData()" autocomplete="off" required>
@@ -16,6 +20,9 @@
     <a href="/sessionLogout" style="float: right;">Log out</a>
 
     <script>
+        var email = window.localStorage.getItem('emailForSignIn');
+        var emailVerified = window.localStorage.getItem('emailVerified');
+        console.log(email, emailVerified);
         var submit = document.getElementById("submit");
         var form = document.getElementById("form");
         const regex = /\S+@\S+\.\S+/;

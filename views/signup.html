@@ -52,6 +52,7 @@
                         .then(({
                             user
                         }) => {
+                            user.sendEmailVerification();
                             return user.getIdToken().then((idToken) => {
                                 return fetch("/sessionLogin", {
                                     method: "POST",

@@ -39,7 +39,7 @@
 
                 firebase.initializeApp(firebaseConfig);
 
-                firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
+                // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
 
                 document
                     .getElementById("login")
@@ -54,6 +54,9 @@
                             .then(({
                                 user
                             }) => {
+                                if (user) {
+
+                                }
                                 return user.getIdToken().then((idToken) => {
                                     return fetch("/sessionLogin", {
                                         method: "POST",
@@ -73,6 +76,8 @@
                             })
                             .then(() => {
                                 window.location.assign("/profile");
+                            }).catch((err) => {
+                                window.alert("Invalid Login Credentials");
                             });
                         return false;
                     });

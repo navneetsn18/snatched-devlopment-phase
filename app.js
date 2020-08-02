@@ -3,6 +3,7 @@ var bodyParser = require("body-parser");
 var admin = require("firebase-admin");
 const cookieParser = require("cookie-parser");
 const csrf = require("csurf");
+var store = require("store");
 
 var app = express();
 const csrfMiddleware = csrf({ cookie: true });
@@ -32,7 +33,6 @@ const db = admin.database();
 
 app.get("/next", function(req, res) {
     const sessionCookie = req.cookies.session || "";
-
     admin
         .auth()
         .verifySessionCookie(sessionCookie, true /** checkRevoked */ )
@@ -54,7 +54,6 @@ app.get("/signup", function(req, res) {
 
 app.get("/profile", function(req, res) {
     const sessionCookie = req.cookies.session || "";
-
     admin
         .auth()
         .verifySessionCookie(sessionCookie, true /** checkRevoked */ )
@@ -83,7 +82,6 @@ app.post('/sendnews', function(req, res) {
 
 app.post("/sessionLogin", (req, res) => {
     const idToken = req.body.idToken.toString();
-
     const expiresIn = 60 * 60 * 24 * 5 * 1000;
 
     admin
