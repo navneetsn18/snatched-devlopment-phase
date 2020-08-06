@@ -59,3 +59,16 @@ function googlesignin() {
             }
         });
 }
+
+function facebooksignin() {
+    event.preventDefault();
+    baseProvider = new firebase.auth.FacebookAuthProvider();
+    firebase.auth().signInWithPopup(baseProvider)
+        .then(({
+            user
+        }) => {
+            if (user) {
+                window.location.assign("/profile");
+            }
+        });
+}
