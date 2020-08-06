@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use('/views', express.static('views'));
-
+app.use('/js', express.static('js'));
 var serviceAccount = require("./snatched-test-1-firebase-adminsdk-37s62-649b988237.json");
 
 admin.initializeApp({

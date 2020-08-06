@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Firebase Server Auth</title>
+    <title>Signup</title>
+
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 </head>
 
 <body>
@@ -18,49 +22,8 @@
                 <button>Sign up</button>
             </form>
         </section>
-
-        <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
-
-        <script>
-            var firebaseConfig = {
-                apiKey: "AIzaSyCaFgbJl5ZukVqUvZER6EeNLhm-F2N1VEw",
-                authDomain: "snatched-test-1.firebaseapp.com",
-                databaseURL: "https://snatched-test-1.firebaseio.com",
-                projectId: "snatched-test-1",
-                storageBucket: "snatched-test-1.appspot.com",
-                messagingSenderId: "649593189943",
-                appId: "1:649593189943:web:70067fa59de352d0d8b1b2",
-                measurementId: "G-X771WGGH89"
-            };
-
-            firebase.initializeApp(firebaseConfig);
-
-            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
-
-            document
-                .getElementById("signup")
-                .addEventListener("submit", (event) => {
-                    event.preventDefault();
-                    const login = event.target.login.value;
-                    const password = event.target.password.value;
-
-                    firebase
-                        .auth()
-                        .createUserWithEmailAndPassword(login, password)
-                        .then(({
-                            user
-                        }) => {
-                            user.sendEmailVerification();
-                        })
-                        .then(() => {
-                            window.location.assign("/profile");
-                        });
-                    return false;
-                });
-        </script>
     </main>
+    <script src="../js/signup.js"></script>
 </body>
 
 </html>

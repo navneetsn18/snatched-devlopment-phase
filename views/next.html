@@ -5,15 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js" defer></script>
 </head>
 
 <body>
-    <h1 style="text-align: center;">Thank You for subscribing to newsletters.</h1>
-    <script>
-        setTimeout(function() {
-            window.location = "/profile";
-        }, 3000);
-    </script>
+    <h1 style="text-align: center; display: none;" id="sub">Thank You for subscribing to newsletters.</h1>
+    <script src="../js/next.js"></script>
 </body>
 
 </html>
