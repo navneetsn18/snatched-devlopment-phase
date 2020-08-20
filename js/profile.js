@@ -16,13 +16,19 @@ window.addEventListener("DOMContentLoaded", () => {
 
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            var verified = user.emailVerified;
-            if (verified === false) {
+            var verifiedEmail = user.emailVerified;
+            if (verifiedEmail === false) {
                 document.getElementById("userEmail").style.display = "block";
             } else {
                 document.getElementById("userEmail").style.display = "none";
             }
-            document.getElementById("user").innerHTML = `Hello ${user.displayName}`;
+            if(user.displayName!=null)
+            {
+                document.getElementById("user").innerHTML = `Hello ${user.displayName}`;
+            }
+            else{
+                window.location.assign("/contactinfo");
+            }
         } else {
             window.location.assign("/login");
         }

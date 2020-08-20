@@ -37,7 +37,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     user
                 }) => {
                     if (user) {
-                        window.location.assign("/profile");
+                        window.location.assign("/contactinfo");
                     } else {
                         document.getElementById("invalid").style.display = "block";
                     }
