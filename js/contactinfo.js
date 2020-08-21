@@ -6,30 +6,38 @@ window.addEventListener("DOMContentLoaded", () => {
         projectId: "snatched-test-1",
         storageBucket: "snatched-test-1.appspot.com",
         messagingSenderId: "649593189943",
-        appId: "1:649593189943:web:70067fa59de352d0d8b1b2",
-        measurementId: "G-X771WGGH89"
     };
 
     firebase.initializeApp(firebaseConfig);
 
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
+    var db = firebase.firestore();
+
     firebase.auth().onAuthStateChanged(function(user) {
         if (!user) {
             window.location.assign("/login");
         }
         else{
+            var docRef = db.collection("users").doc(user.uid);
+            docRef.get().then(function(doc) {
+                if (doc.exists) {
+                    document.getElementById('add1').value = doc.data()['Address1'];
+                    document.getElementById('add2').value = doc.data()['Address2'];
+                    document.getElementById('add3').value = doc.data()['Address3'];
+                    document.getElementById('city').value = doc.data()['city'];
+                    document.getElementById('pincode').value = doc.data()['pinCode'];
+                    document.getElementById('phone').value = doc.data()['phone'];
+                } else {
+                    console.log("No such document!");
+                }
+            }).catch(function(error) {
+                console.log("Error getting document:", error);
+            });
             document.getElementById('fname').value = user.displayName;
             document.getElementById('lname').value = user.displayName;
             document.getElementById('uid').value = user.uid;
             document.getElementById('email').value = user.email;
-            document.getElementById('fname').value = user.displayName;
-            document.getElementById('add1').value = "B 66";
-            document.getElementById('add2').value = "Uttam Nagar";
-            document.getElementById('add3').value = "East";
-            document.getElementById('city').value = "Delhi";
-            document.getElementById('pincode').value = "110059";
-            document.getElementById('phone').value = "1234567890";
         }
     })
 });
