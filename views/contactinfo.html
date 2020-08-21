@@ -12,7 +12,8 @@
 </head>
 
 <body>
-
+    <a href="/profile">Home</a>
+    <h1>User Deatils</h1>
     <div>
         <input type="hidden" name="uid">
         <input type="text" name="fname" id="fname" placeholder="Full Name" required>
@@ -20,15 +21,29 @@
     </div>
     <form action="/updateUserInfo" method="POST">
         <input type="hidden" name="uid" id="uid">
-        <input type="hidden" name="userEmail" id="email">
+        <input type="hidden" name="email" id="email">
+        <input type="hidden" name="lname" id="lname">
         <input type="text" name="add1" id="add1" placeholder="Address 1" required>
         <input type="text" name="add2" id="add2" placeholder="Address 2">
         <input type="text" name="add3" id="add3" placeholder="Address 3">
+        <input type="text" name="city" id="city" placeholder="City" required>
+        <input type="number" name="pincode" id="pincode" placeholder="Pin Code" required>
         <input type="number" name="phone" id="phone" placeholder="Phone Number" required>
-        <input type="submit" value="Update">
+        <input type="submit" value="Update" onclick="al()">
     </form>
+    <br>
+    <h1>Update password</h1>
+    <div id="passchange">
+         <input type="password" name="newPassword" id="newPassword" placeholder="Enter new password" autocomplete="off" required>
+         <input type="password" name="confirmnewPassword" id="confirmnewPassword" placeholder="Re-enter password" autocomplete="off" required>
+         <button id="changepass" onclick="funChangePass()">Reset</button>
+    </div>
     <a style="float: right; " onclick="signout() ">Log out</a>
-
+    <script>
+        function al(){
+            window.alert("Do you really want to update.")
+        }
+    </script>
 </body>
 
 </html>

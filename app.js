@@ -28,6 +28,9 @@ app.get("/login", function(req, res) {
     res.render("login.html");
 });
 
+app.get("/passreset", function(req, res) {
+    res.render("passreset.html");
+});
 
 app.get("/contactinfo", function(req, res) {
     res.render("./contactinfo.html");
@@ -35,19 +38,21 @@ app.get("/contactinfo", function(req, res) {
 
 app.post("/updateUserInfo",function(req,res){
     const uid = req.body.uid;
-    const userEmail = req.body.userEmail;
-    const data = {
-        email: req.body.email
+    const data ={
+        uid: req.body.uid,
+        name : req.body.lname,
+        email :req.body.email,
+        Address1: req.body.add1,
+        Address2: req.body.add2,
+        Address3: req.body.add3,
+        city : req.body.city,
+        pinCode : req.body.pincode,
+        phone :req.body.phone,
     }
-    if (req.body.email.match(regex) != null) {
-        const docRef = db.collection('users').doc(uid).doc('Subscribed Mails');
-        docRef.set(data);
-        console.log("Subscribed");
-        res.redirect("/next");
-    } else {
-        console.log("Email validataion failed.");
-        res.redirect("/profile");
-    }
+    const docRef = db.collection('users').doc(uid);
+    docRef.set(data);
+    console.log("Updated");
+    res.redirect("/contactinfo");
 })
 
 app.get("/profile", function(req, res) {
@@ -65,7 +70,7 @@ app.post('/sendnews', function(req, res) {
         email: req.body.email
     }
     if (req.body.email.match(regex) != null) {
-        const docRef = db.collection('subMails').doc(uid).doc('Subscribed Mails');
+        const docRef = db.collection('subMails').doc(uid);
         docRef.set(data);
         console.log("Subscribed");
         res.redirect("/next");

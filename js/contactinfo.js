@@ -20,12 +20,16 @@ window.addEventListener("DOMContentLoaded", () => {
         }
         else{
             document.getElementById('fname').value = user.displayName;
+            document.getElementById('lname').value = user.displayName;
             document.getElementById('uid').value = user.uid;
             document.getElementById('email').value = user.email;
-            document.getElementById('add1').value = "Temp";
-            document.getElementById('add2').value = "Temp";
-            document.getElementById('add3').value = "Temp";
-            document.getElementById('phone').value = "123";
+            document.getElementById('fname').value = user.displayName;
+            document.getElementById('add1').value = "B 66";
+            document.getElementById('add2').value = "Uttam Nagar";
+            document.getElementById('add3').value = "East";
+            document.getElementById('city').value = "Delhi";
+            document.getElementById('pincode').value = "110059";
+            document.getElementById('phone').value = "1234567890";
         }
     })
 });
@@ -48,4 +52,13 @@ function updateUser(){
            }).catch(function(error) {
             window.alert("Something went wrong");
         });
+}
+function funChangePass(){
+    var newPassword = document.getElementById('newPassword').value;
+    var user = firebase.auth().currentUser;
+    user.updatePassword(newPassword).then(function() {
+        window.alert("Password Changed Successfully.")
+    }).catch(function(error) {
+        window.alert("Password cannot be changed for Google or Facebook Login. Please Contact your provider.")
+    });
 }

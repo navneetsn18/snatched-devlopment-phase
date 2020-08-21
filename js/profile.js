@@ -16,6 +16,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
+            document.getElementById('uid').value = user.uid;
             var verifiedEmail = user.emailVerified;
             if (verifiedEmail === false) {
                 document.getElementById("userEmail").style.display = "block";
