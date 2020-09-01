@@ -88,14 +88,14 @@
                         <form class="contact-from" action="/sendmsg" method="post" id="form">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="text" name="username" id="username" placeholder="Your name" required>
+                                    <input type="text" name="username" id="username" placeholder="Your name" autocomplete="off" required>
                                 </div>
                                 <div class="col-md-6">
                                     <input type="email" name="email" id="email" placeholder="Your email" autocomplete="off" required>
                                 </div>
                                 <div class="col-md-12">
-                                    <input type="text" name="subject" id="subject" placeholder="Subject" required>
-                                    <textarea name="message" id="message" placeholder="Message" required></textarea>
+                                    <input type="text" name="subject" id="subject" placeholder="Subject" autocomplete="off" required>
+                                    <textarea name="message" id="message" placeholder="Message" autocomplete="off" required></textarea>
                                     <button type="submit" class="site-btn" id="submit" onclick="sendusmsg()">send message</button>
                                 </div>
                             </div>
