@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="en">
 
 <head>
     <title>Santched</title>
@@ -9,25 +9,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Favicon -->
-    <link href="img/logo copy.png" rel="shortcut icon" />
+    <link href="../img/logo copy.png" rel="shortcut icon" />
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
-    <link rel="stylesheet" href="css/owl.carousel.min.css" />
-    <link rel="stylesheet" href="css/slicknav.min.css" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="../css/slicknav.min.css" />
 
     <!-- Main Stylesheets -->
-    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js" defer></script>
+    <link rel="stylesheet" href="../css/style.css" />
 
 
     <!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
+    <![endif]-->
+    <!-- Scripts -->
+    <script src="../js/newsletter.js"></script>
 
 </head>
 
@@ -40,21 +45,21 @@
     <!-- Header section -->
     <header class="header-section clearfix">
         <a href="/" class="site-logo">
-            <img src="./img/logo copy.png" alt="">
+            <img src="../img/logo copy.png" alt="">
         </a>
         <div class="header-right">
             <a href="#" class="hr-btn">Help</a>
             <span>|</span>
             <div class="user-panel">
-                <a href="" class="login">Login</a>
-                <a href="" class="register">Create an account</a>
+                <a href="/login" class="login">Login</a>
+                <a href="/signup" class="register">Create an account</a>
             </div>
         </div>
         <ul class="main-menu">
             <li><a href="/">Home</a></li>
             <li><a href="/#about">About</a></li>
             <li><a href="/#part">Partners</a></li>
-            <li><a href="./#app">Download </a></li>
+            <li><a href="/#app">Download </a></li>
             <li><a href="/contact">Contact</a></li>
         </ul>
     </header>
@@ -135,13 +140,13 @@
                 <div class="col-xl-6 col-lg-5 order-lg-1">
                     <h2 style="color: black;">Snatched</h2>
                     <br>
-                    <form class="contact-from">
+                    <form class="contact-from" action="/sendnews-contact" method="post" id="form">
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" placeholder="Your e-mail">
+                                <input type="email" name="email" id="email" placeholder="Your email" onkeypress="inputData()" autocomplete="off" required>
                             </div>
                             <div class="col-md-12">
-                                <button class="site-btn">send message</button>
+                                <button type="submit" class="site-btn" id="submit" onclick="fun()">send message</button>
                             </div>
                         </div>
                     </form>

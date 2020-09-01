@@ -32,7 +32,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
     <script src="../js/index.js"></script>
-
+    <script src="../js/newsletter.js"></script>
 </head>
 
 <body>
@@ -294,13 +294,13 @@
                 <div class="col-xl-6 col-lg-5 order-lg-1">
                     <h2 style="color: black;">Snatched</h2>
                     <br>
-                    <form class="contact-from">
+                    <form class="contact-from" action="/sendnews" method="post" id="form">
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" placeholder="Your e-mail">
+                                <input type="email" name="email" id="email" placeholder="Your email" onkeypress="inputData()" autocomplete="off" required>
                             </div>
                             <div class="col-md-12">
-                                <button class="site-btn">send message</button>
+                                <button type="submit" class="site-btn" id="submit" onclick="fun()">send message</button>
                             </div>
                         </div>
                     </form>

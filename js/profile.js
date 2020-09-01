@@ -23,11 +23,9 @@ window.addEventListener("DOMContentLoaded", () => {
             } else {
                 document.getElementById("userEmail").style.display = "none";
             }
-            if(user.displayName!=null)
-            {
+            if (user.displayName != null) {
                 document.getElementById("user").innerHTML = `Hello ${user.displayName}`;
-            }
-            else{
+            } else {
                 window.location.assign("/contactinfo");
             }
         } else {
@@ -52,9 +50,6 @@ function signout() {
     });
 }
 
-var email = window.localStorage.getItem('emailForSignIn');
-var emailVerified = window.localStorage.getItem('emailVerified');
-console.log(email, emailVerified);
 var submit = document.getElementById("submit");
 var form = document.getElementById("form");
 const regex = /\S+@\S+\.\S+/;

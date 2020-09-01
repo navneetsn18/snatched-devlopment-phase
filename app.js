@@ -67,24 +67,38 @@ app.get("/profile", function(req, res) {
     res.render("profile.html");
 });
 
-app.get("/next", function(req, res) {
-    res.render("next.html");
-})
 
 app.post('/sendnews', function(req, res) {
+    var datetime = new Date();
     const regex = /\S+@\S+\.\S+/;
-    const uid = req.body.uid;
     const data = {
         email: req.body.email
     }
     if (req.body.email.match(regex) != null) {
-        const docRef = db.collection('subMails').doc(uid);
+        const docRef = db.collection('subMails').doc(String(datetime));
         docRef.set(data);
         console.log("Subscribed");
-        res.redirect("/next");
+        res.redirect("/");
     } else {
         console.log("Email validataion failed.");
-        res.redirect("/profile");
+        res.redirect("/");
+    }
+});
+
+app.post('/sendnews-contact', function(req, res) {
+    var datetime = new Date();
+    const regex = /\S+@\S+\.\S+/;
+    const data = {
+        email: req.body.email
+    }
+    if (req.body.email.match(regex) != null) {
+        const docRef = db.collection('subMails').doc(String(datetime));
+        docRef.set(data);
+        console.log("Subscribed");
+        res.redirect("/contact");
+    } else {
+        console.log("Email validataion failed.");
+        res.redirect("/contact");
     }
 });
 
