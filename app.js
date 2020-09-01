@@ -11,6 +11,10 @@ app.use(bodyParser.urlencoded({
 }));
 app.use('/views', express.static('views'));
 app.use('/js', express.static('js'));
+app.use('/css', express.static('css'));
+app.use('/img', express.static('img'));
+app.use('/icon-fonts', express.static('icon-fonts'));
+
 var serviceAccount = require("./snatched-test-1-firebase-adminsdk-37s62-649b988237.json");
 
 admin.initializeApp({
@@ -18,6 +22,10 @@ admin.initializeApp({
 });
 
 const db = admin.firestore();
+
+app.get("/contact", function(req, res) {
+    res.render("contact.html");
+});
 
 app.get("/signup", function(req, res) {
     res.render("signup.html");
@@ -36,18 +44,18 @@ app.get("/contactinfo", function(req, res) {
     res.render("./contactinfo.html");
 })
 
-app.post("/updateUserInfo",function(req,res){
+app.post("/updateUserInfo", function(req, res) {
     const uid = req.body.uid;
-    const data ={
+    const data = {
         uid: req.body.uid,
-        name : req.body.lname,
-        email :req.body.email,
+        name: req.body.lname,
+        email: req.body.email,
         Address1: req.body.add1,
         Address2: req.body.add2,
         Address3: req.body.add3,
-        city : req.body.city,
-        pinCode : req.body.pincode,
-        phone :req.body.phone,
+        city: req.body.city,
+        pinCode: req.body.pincode,
+        phone: req.body.phone,
     }
     const docRef = db.collection('users').doc(uid);
     docRef.set(data);
