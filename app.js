@@ -67,6 +67,25 @@ app.get("/profile", function(req, res) {
     res.render("profile.html");
 });
 
+app.post('/sendmsg', function(req, res) {
+    var datetime = new Date();
+    const regex = /\S+@\S+\.\S+/;
+    const data = {
+        name: req.body.username,
+        email: req.body.email,
+        subject: req.body.subject,
+        message: req.body.message
+    }
+    if (req.body.email.match(regex) != null) {
+        const docRef = db.collection('messages').doc(String(datetime));
+        docRef.set(data);
+        console.log("New Message Recieved.");
+        res.redirect("/contact");
+    } else {
+        console.log("Email validataion failed.");
+        res.redirect("/contact");
+    }
+});
 
 app.post('/sendnews', function(req, res) {
     var datetime = new Date();

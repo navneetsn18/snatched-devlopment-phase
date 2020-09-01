@@ -85,18 +85,18 @@
                             <li>1234 567 789</li>
                             <li>snatched.ltd@gmail.com</li>
                         </ul>
-                        <form class="contact-from">
+                        <form class="contact-from" action="/sendmsg" method="post" id="form">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="text" placeholder="Your name">
+                                    <input type="text" name="username" id="username" placeholder="Your name" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" placeholder="Your e-mail">
+                                    <input type="email" name="email" id="email" placeholder="Your email" autocomplete="off" required>
                                 </div>
                                 <div class="col-md-12">
-                                    <input type="text" placeholder="Subject">
-                                    <textarea placeholder="Message"></textarea>
-                                    <button class="site-btn">send message</button>
+                                    <input type="text" name="subject" id="subject" placeholder="Subject" required>
+                                    <textarea name="message" id="message" placeholder="Message" required></textarea>
+                                    <button type="submit" class="site-btn" id="submit" onclick="sendusmsg()">send message</button>
                                 </div>
                             </div>
                         </form>
@@ -146,7 +146,7 @@
                                 <input type="email" name="email" id="email" placeholder="Your email" onkeypress="inputData()" autocomplete="off" required>
                             </div>
                             <div class="col-md-12">
-                                <button type="submit" class="site-btn" id="submit" onclick="fun()">send message</button>
+                                <button type="submit" class="site-btn" id="submit" onclick="mailsub()">send message</button>
                             </div>
                         </div>
                     </form>
